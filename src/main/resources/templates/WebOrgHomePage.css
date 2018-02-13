@@ -1,0 +1,20 @@
+
+
+#description{
+	margin:auto;
+	Width:30%;
+	text-align:justify;
+}
+
+#description h1{
+	position:relative;
+	padding-top:200px;
+	left: -75px;
+}
+
+#login{
+	display:flex;
+	justify-content: space-between;
+
+}
+
