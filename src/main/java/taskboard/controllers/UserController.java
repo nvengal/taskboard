@@ -5,7 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import taskboard.models.User;
 import taskboard.models.UserRepository;
-import taskboard.pojo.ResponsePOJO;
+import taskboard.pojos.ResponsePOJO;
 
 @RestController
 @RequestMapping(path = "/api/users")
@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User getUserById(@PathVariable(name = "id") long id) {
         User user = userRepository.findOne(id);
-        user.setPassword(null);
+        user.setPassword("Not Displayed");
         return user;
     }
 

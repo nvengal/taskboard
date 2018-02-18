@@ -1,9 +1,9 @@
-$(function (){
+$( () => {
   
   var $username = $('#Username');
   var $password = $('#Password');
 
-  $('#Submit').on('click', function() {
+  $('#Submit').on('click', () => {
 
     var user = {
       'email': $username.val(),
@@ -19,10 +19,10 @@ $(function (){
       },
       url:'/api/users/verify',
       data: JSON.stringify(user),
-      success: function(response) {
+      success: (response) => {
         alert(response.message);
       },
-      error: function() {
+      error: () => {
         alert('Verification error');
       }
     });

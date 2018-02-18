@@ -1,4 +1,4 @@
-package taskboard.pojo;
+package taskboard.pojos;
 
 public class ResponsePOJO {
     private boolean success;
