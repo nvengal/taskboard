@@ -1,1 +1,42 @@
-REGISTRATION PAGE
+<!DOCTYPE>
+<html>
+<head>
+
+  <title>Web Organizer Registration</title>
+  </head>
+  
+  <body>
+	<form id="regInfo">
+		<legend> <h1>Registration Information</h1> </legend>
+		First Name
+		<input name="FName" id="firstName" required="required" type="text"/>
+		Last Name
+		<input name="LName" id="lastName" required="required" type="text"/>
+		E-mail address
+		<input name="e-Address" id="emailAddress" required="required" type="email"/>
+		Password
+		<input name="pass" id="Password" required="required" type="password"/>
+		Confirm Password
+		<input name="cPass" id="confirmPassword" required="required" type="password" oninput="check(this)"/>
+		<script language='javascript' type='text/javascript'>
+			function check(password){
+				if (password.value != document.getElementById('Password').value){
+					password.setCustomValidity('Passwords must match.');
+				}
+				else{
+					password.setCustomValidity('');
+				}
+			}
+		</script>
+		<input name="submitButton" id="Submit"  value="Submit" type="submit" />
+		
+	
+	
+	</form>
+  </body>
+  
+  
+  
+  
+  
+  </html>
