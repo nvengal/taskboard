@@ -1,23 +1,28 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-<head>
-
-  <title>Web Organizer Registration</title>
-  </head>
+	<head>
+		<title>Web Organizer Registration</title>
+		<link type="text/css" href="css/main.css" rel="stylesheet" />
+	</head>
   
   <body>
+  	<div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+		 <input type="button" class="btn btn-primary" onclick="window.location.href= index.html;" value="Home" />
+  	</div>
+
 	<form id="regInfo">
 		<legend> <h1>Registration Information</h1> </legend>
 		First Name
-		<input name="FName" id="firstName" required="required" type="text"/>
+		<input name="FName" id="firstName" required="required" type="text"/> <br/><br/>
 		Last Name
-		<input name="LName" id="lastName" required="required" type="text"/>
+		<input name="LName" id="lastName" required="required" type="text"/> <br/><br/>
 		E-mail address
-		<input name="e-Address" id="emailAddress" required="required" type="email"/>
+		<input name="e-Address" id="emailAddress" required="required" type="email"/> <br/><br/>
 		Password
-		<input name="pass" id="Password" required="required" type="password"/>
+		<input name="pass" id="Password" required="required" type="password"/> <br/><br/>
 		Confirm Password
-		<input name="cPass" id="confirmPassword" required="required" type="password" oninput="check(this)"/>
+		<input name="cPass" id="confirmPassword" required="required" type="password" oninput="check(this)"/> <br/><br/>
 		<script language='javascript' type='text/javascript'>
 			function check(password){
 				if (password.value != document.getElementById('Password').value){
