@@ -1,23 +1,21 @@
 $( () => {
-  //TODO: Add jquery selectors for the vars and submit button once the regitsration
-  //page is completed
-  var $email;
-  var $password;
-  var $confirmedPassword;
-  var $firstname;
-  var $lastname;
 
-  $('#submit-button').on('click', () => {
 
-    if ($password !== $confirmedPassword) {
-      alert("Passwords don't match");
-    } else {
+  var $form = $('#regInfo');
+  var $email = $('#emailAddress');
+  var $password = $('#password');
+  var $confirmedPassword = $('#confirmPassword');
+  var $firstname = $('#firstName');
+  var $lastname = $('#lastName');
+
+  $form.on('submit', (event) => {
+      event.preventDefault();
 
       var user = {
         'firstname': $firstname.val(),
         'lastname': $lastname.val(),
-        'email': $email.val();
-        'password': $password.val();
+        'email': $email.val(),
+        'password': $password.val()
       };
   
       $.ajax({
@@ -29,15 +27,15 @@ $( () => {
         },
         url:'/api/users/add',
         data: JSON.stringify(user),
-        success: (savedUser) => {
-          console.log('Saved new user: ', savedUser);
+        success: (response) => {
+          alert(response.message);
+          window.location.href = window.location.origin;
         },
-        error: () => {
+        error: (err) => {
           alert('Failed to save new user');
+          console.log('Error: ' + err.responseJSON.message);
         }
       });
-
-    }
 
   });
 

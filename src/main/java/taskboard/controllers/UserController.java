@@ -1,5 +1,7 @@
 package taskboard.controllers;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,18 @@ public class UserController {
     private UserRepository userRepository;
 
     @PutMapping(path= "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User addNewUser(@RequestBody User user) {
-        User savedUser = userRepository.save(user);
-        return savedUser;
+    public ResponsePOJO addNewUser(@RequestBody User user) {
+        ResponsePOJO response = new ResponsePOJO();
+        try {
+            userRepository.save(user);
+            response.setSuccess(true);
+            response.setMessage("Successfully saved: " + user.getEmail());
+        } catch (Exception ex) {
+            System.out.print(ex);
+            response.setSuccess(false);
+            response.setMessage("Failed to save user. Email id: '" + user.getEmail() + "' is already in use");
+        }
+        return response;
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
