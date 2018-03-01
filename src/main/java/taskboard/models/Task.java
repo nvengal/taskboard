@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 public class Task {
-    //Todo: implement project id foreign key
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
