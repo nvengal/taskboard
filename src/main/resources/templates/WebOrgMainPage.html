@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>My Projects</title>
+   <meta charset="utf-8">
+    <link href="WebOrgMainPage.css" rel="stylesheet" />
+	 <link href="main.css" rel="stylesheet" />
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+	
+	<header class="header">
+	
+	  
+	  
+	 
+	  
+	<form id="topBar">
+			<div class="topbar-left">
+	
+				<select name="projectsBar" id="projectBar">
+				<!-- Add in ability to get use input project names from server-->
+				<!-- Make choosing a different project refresh the tasks page. Maybe have a confirmation box.-->
+					<option value="proj1"> Project 1</option>
+					<option value="proj2"> Project 2</option>
+					<option value="proj3"> Project 3</option>
+					<option value="proj4"> Project 4</option>
+				</select>
+				
+				
+			</div>
+
+	 <div class="topbar-right">
+		
+		Welcome,  <id="userID"> User1 </id><!-- Link to SQL server to fetch and display User's Name--> 
+		<input type="button" onclick="location.href='index.html';" value="Sign Out" /> <!-- Add logout Functionality-->
+		
+	</div>
+	
+	</form>
+	
+	</header>
+	
+	<div class ="notStarted">
+			<h1>Not Started</h1>
+	<div class="card-group">
+	
+	
+		
+		
+	
+	
+	
+  <div class="card">
+  
+  	
+			<div class="popup" id= "cardPopup"  onclick="myFunction()" ">
+				
+				<script>
+				// When the user clicks on  open the popup
+				function myFunction() {
+					var popup = document.getElementById("myPopup");
+					popup.classList.toggle("show");
+				}
+				</script>
+				
+				<span class="popuptext" id="myPopup"> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></span>
+	
+   
+   <div class="card-block">
+   
+      <h4 class="card-title" id="cardTitle"> Card title 1</h4>
+      <p class="card-text" id="cardText">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer" id="cardFooter">
+     Footer Text
+    </div>
+	
+  </div>
+  
+  </div>
+
+  
+  
+  
+  
+  <div class="card">
+    
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+    <div class="card">
+    
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+  
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+   
+    </div>
+  </div>
+</div>
+</div>
+		
+		<div class ="inProgress">
+			<h1>In Progress</h1>
+			<div class="card-group">
+  <div class="card">
+   
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+  <div class="card">
+    
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+  <div class="card">
+   
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+    <div class="card">
+    
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+  
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+   
+    </div>
+  </div>
+</div>
+</div>
+		
+		
+		<div class ="testing">
+			<h1>Testing</h1>
+				<div class="card-group">
+  <div class="card">
+   
+   <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+  <div class="card">
+    
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+    <div class="card">
+    
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+   
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+  
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+   
+    </div>
+  </div>
+</div>
+		</div>
+		
+		<div class ="finalizing">
+			<h1>Finalizing</h1>
+					<div class="card-group">
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
+  <div class="card">
+    
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+     
+    </div>
+  </div>
+  <div class="card">
+   
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
+    <div class="card">
+    
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+   
+     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      
+    </div>
+  </div>
+  <div class="card">
+  
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+   
+    </div>
+  </div>
+</div>
+		</div>
+		
+	
+	
+	
+	
+	
+	
+	<footer class="footer">
+	
+	<a id="naviconBot" href="#">
+		<div class="btn-group-vertical" data-toggle="buttons">
+		  <button type="button" class="buttonBot1">New Project</button>
+		  <button type="button" class="buttonBot2">New Task</button>
+		  <button type="button" class="buttonBot3">Invite User</button>
+		</div>
+	</a>
+
+	</footer>
+	
+	
+
+  </body>
+  
+  
+  
+  
+  
+  </html>
