@@ -22,6 +22,10 @@ public class Task {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
     private Date startDate;
@@ -62,6 +66,15 @@ public class Task {
         this.description = description;
     }
 
+    @Enumerated(EnumType.STRING)
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -76,5 +89,9 @@ public class Task {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public enum Status {
+        NOT_STARTED, IN_PROGRESS, TESTING, FINALIZING
     }
 }

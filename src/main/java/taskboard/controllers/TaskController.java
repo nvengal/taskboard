@@ -43,6 +43,7 @@ public class TaskController {
             foundTask.setName(task.getName());
             foundTask.setProject(task.getProject());
             foundTask.setDescription(task.getDescription());
+            foundTask.setStatus(task.getStatus());
             foundTask.setDueDate(task.getDueDate());
             Task savedTask = taskRepository.save(foundTask);
             return new ResponsePOJO<>(true, "Successfully updated task: " + task.getName(), savedTask);
