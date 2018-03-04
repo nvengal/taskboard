@@ -20,7 +20,7 @@ $( () => {
       url:'/api/users/verify',
       data: JSON.stringify(user),
       success: (response) => {
-        alert(response.message);
+        window.location.href = window.location.origin + '/home';
       },
       error: () => {
         alert('Verification error');

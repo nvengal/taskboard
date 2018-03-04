@@ -29,7 +29,7 @@ $( () => {
         data: JSON.stringify(user),
         success: (response) => {
           alert(response.message);
-          window.location.href = window.location.origin;
+          window.location.href = window.location.origin + '/home';
         },
         error: (err) => {
           alert('Failed to save new user');

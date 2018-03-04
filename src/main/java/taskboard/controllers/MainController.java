@@ -20,4 +20,9 @@ public class MainController {
         return "WebOrgRegPage";
     }
 
+    @RequestMapping("/home")
+    public String home() {
+        return "WebOrgMainPage";
+    }
+
 }
