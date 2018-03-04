@@ -22,7 +22,7 @@ public class ProjectController {
     private EntityManager entityManager;
 
     @PutMapping(path = "/{userId}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    private Project addProject(@RequestBody Project project, @PathVariable(name = "userId") long userId) {
+    public Project addProject(@RequestBody Project project, @PathVariable(name = "userId") long userId) {
         User user = entityManager.getReference(User.class, userId);
         project.setUser(user);
         project.setStartDate(new Date());
@@ -30,12 +30,12 @@ public class ProjectController {
     }
 
     @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private Project getProject(@PathVariable(name = "id") long id) {
+    public Project getProject(@PathVariable(name = "id") long id) {
         return projectRepository.findOne(id);
     }
 
     @PostMapping(path = "/{userId}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponsePOJO<Project> updateProject(@RequestBody Project project, @PathVariable(name = "userId") long userId) {
+    public ResponsePOJO<Project> updateProject(@RequestBody Project project, @PathVariable(name = "userId") long userId) {
         Project foundProject = projectRepository.findOne(project.getId());
         if (foundProject == null) {
             return new ResponsePOJO<>(false, "There is no project with id: " + project.getId());
