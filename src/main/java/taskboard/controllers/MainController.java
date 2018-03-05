@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import taskboard.models.Project;
+import taskboard.models.ProjectRepository;
 import taskboard.models.User;
 import taskboard.models.UserRepository;
 
@@ -11,12 +13,17 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -45,6 +52,14 @@ public class MainController {
         }
 
         model.addAttribute("user", user);
+
+        Iterable<Project> projects = projectRepository.findAll();
+
+        projects = StreamSupport.stream(projects.spliterator(), false)
+                .filter( project -> user.getId() == project.getUser().getId() )
+                .collect(Collectors.toList());
+
+        model.addAttribute("projects", projects);
 
         return "WebOrgMainPage";
     }
