@@ -28,8 +28,22 @@ $( () => {
         url:'/api/users/add',
         data: JSON.stringify(user),
         success: (response) => {
-          alert(response.message);
-          window.location.href = window.location.origin + '/home';
+          $.ajax({
+                type: 'POST',
+                datatype: 'json',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                url:'/api/users/verify',
+                data: JSON.stringify(user),
+                success: (response) => {
+                  window.location.href = window.location.origin + '/home';
+                },
+                error: () => {
+                  alert('Verification error');
+                }
+              });
         },
         error: (err) => {
           alert('Failed to save new user');
