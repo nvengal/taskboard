@@ -9,6 +9,9 @@ import taskboard.models.User;
 import taskboard.models.UserRepository;
 import taskboard.pojos.ResponsePOJO;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
@@ -50,7 +53,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/verify", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponsePOJO verifyUser(@RequestBody User user) {
+    public ResponsePOJO verifyUser(@RequestBody User user, HttpServletResponse httpResponse) {
         ResponsePOJO response = new ResponsePOJO();
         User storedUser = userRepository.findUserByEmail(user.getEmail());
         if (storedUser == null) {
@@ -62,8 +65,15 @@ public class UserController {
         } else {
             response.setSuccess(true);
             response.setMessage("User successfully verified");
+            createUserIdCookie(httpResponse, storedUser);
         }
         return response;
+    }
+
+    private void createUserIdCookie(HttpServletResponse response, User user) {
+        Cookie cookie = new Cookie("user_id", String.valueOf(user.getId()));
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 
 }
