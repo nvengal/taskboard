@@ -47,8 +47,9 @@ public class MainController {
 
         User user = userRepository.findOne(Long.valueOf(userIdCookie.get().getValue()));
 
-        if (user != null) {
+        if (user == null) {
             System.out.println("Error: No user found with id: " + userIdCookie.get().getValue());
+            return index();
         }
 
         model.addAttribute("user", user);
