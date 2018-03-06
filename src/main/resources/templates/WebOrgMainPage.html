@@ -13,22 +13,19 @@
 
 <header class="header">
 
-
     <form id="topBar">
-        <div class="topbar-left">
 
+        <div class="topbar-left">
             <select name="projectsBar" id="projectBar">
                 <!-- Make choosing a different project refresh the tasks page. Maybe have a confirmation box.-->
                 <option th:each="project : ${projects}"
-                        th:value="'project_' + ${project.id}" th:text="${project.name}"></option>
+                        th:id="'project_' + ${project.id}" th:text="${project.name}"></option>
             </select>
-
-
         </div>
 
         <div class="topbar-right">
             <div class="row">
-                <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.email} "></p>
+                <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname} "></p>
                 <input type="button" onclick="window.location.href=window.location.origin;" value="Sign Out"/>
                 <!-- Add logout Functionality-->
             </div>
@@ -38,6 +35,22 @@
 
 </header>
 
+<div th:each="status : ${taskStatusTypes}" th:id="'status_' + ${status}">
+    <h1 th:text="${status.toString()}"></h1>
+    <div class="card-group">
+        <div th:each="task : ${tasks}" th:if="${task.status} == ${status}">
+            <div class="card" th:id="'task_' + ${task.id}" >
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${task.name}"></h4>
+                    <p class="card-text" th:text="${task.description}"></p>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div class="notStarted">
     <h1>Not Started</h1>
     <div class="card-group">
@@ -359,7 +372,7 @@
         </div>
     </div>
 </div>
-
+-->
 
 <footer class="footer">
 

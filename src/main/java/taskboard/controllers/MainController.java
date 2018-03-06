@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import taskboard.models.Project;
-import taskboard.models.ProjectRepository;
-import taskboard.models.User;
-import taskboard.models.UserRepository;
+import taskboard.models.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +21,9 @@ public class MainController {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -59,7 +59,19 @@ public class MainController {
                 .filter( project -> user.getId() == project.getUser().getId() )
                 .collect(Collectors.toList());
 
+        Project defaultProject = StreamSupport.stream(projects.spliterator(), false).findFirst().get();
+
         model.addAttribute("projects", projects);
+
+        model.addAttribute("taskStatusTypes", Task.Status.values());
+
+        Iterable<Task> tasks = taskRepository.findAll();
+
+        tasks = StreamSupport.stream(tasks.spliterator(), false)
+                .filter( task -> defaultProject.getId() == task.getProject().getId() )
+                .collect(Collectors.toList());
+
+        model.addAttribute("tasks", tasks);
 
         return "WebOrgMainPage";
     }

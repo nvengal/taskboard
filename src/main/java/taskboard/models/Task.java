@@ -9,7 +9,7 @@ import java.util.Date;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @JsonIgnore
@@ -92,6 +92,24 @@ public class Task {
     }
 
     public enum Status {
-        NOT_STARTED, IN_PROGRESS, TESTING, FINALIZING
+        NOT_STARTED("Not Started"),
+        IN_PROGRESS("In Progress"),
+        TESTING("Testing"),
+        FINALIZING("Finalizing");
+
+        private String status;
+
+        Status(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        @Override
+        public String toString() {
+            return status.toString();
+        }
     }
 }
