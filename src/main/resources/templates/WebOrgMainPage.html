@@ -38,14 +38,13 @@
 <div th:each="status : ${taskStatusTypes}" th:id="'status_' + ${status}">
     <h1 th:text="${status.toString()}"></h1>
     <div class="card-group">
-        <div th:each="task : ${tasks}" th:if="${task.status} == ${status}">
-            <div class="card" th:id="'task_' + ${task.id}" style="width: 20rem;" >
-                <div class="card-body">
-                    <h4 class="card-title" th:text="${task.name}"></h4>
-                    <p class="card-text" th:text="${task.description}"></p>
-                </div>
-                <div class="card-footer"></div>
+        <div class="card" th:each="task : ${tasks}" th:if="${task.status} == ${status}"
+             th:id="'task_' + ${task.id}" style="max-width: 20rem;">
+            <div class="card-body">
+                <h4 class="card-title" th:text="${task.name}"></h4>
+                <p class="card-text" th:text="${task.description}"></p>
             </div>
+            <div class="card-footer"></div>
         </div>
     </div>
 </div>
