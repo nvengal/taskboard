@@ -8,6 +8,7 @@ import taskboard.models.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,7 +27,11 @@ public class MainController {
     private TaskRepository taskRepository;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(HttpServletResponse response) {
+        Cookie cookie = new Cookie("user_id", "-1");
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return "index";
     }
 
@@ -36,20 +41,21 @@ public class MainController {
     }
 
     @RequestMapping("/home")
-    public String home(HttpServletRequest request, Model model) {
-        Optional<Cookie> userIdCookie = Arrays.stream(request.getCookies()).filter(
-                cookie -> cookie.getName().equals("user_id")).findFirst();
+    public String home(HttpServletRequest request, HttpServletResponse response, Model model) {
+        Optional<Cookie> userIdCookie = Arrays.stream(
+                request.getCookies() != null ? request.getCookies() : new Cookie[0])
+                .filter(cookie -> cookie.getName().equals("user_id")).findFirst();
 
         if (!userIdCookie.isPresent()) {
             System.out.println("Error: User_id cookie was not set");
-            return index();
+            return index(response);
         }
 
         User user = userRepository.findOne(Long.valueOf(userIdCookie.get().getValue()));
 
         if (user == null) {
             System.out.println("Error: No user found with id: " + userIdCookie.get().getValue());
-            return index();
+            return index(response);
         }
 
         model.addAttribute("user", user);
