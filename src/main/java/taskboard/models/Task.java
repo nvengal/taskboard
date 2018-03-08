@@ -1,6 +1,7 @@
 package taskboard.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Task {
     @Column(nullable = false)
     private String name;
 
+    @Type(type = "text")
     private String description;
 
     @Enumerated(EnumType.STRING)
