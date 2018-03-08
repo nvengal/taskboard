@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Web Organizer Registration</title>
-		<link type="text/css" href="css/main.css" rel="stylesheet" />
-	</head>
-  
-  <body>
-  	<div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+<head>
+    <title>Web Organizer Registration</title>
+    <link type="text/css" href="css/main.css" rel="stylesheet"/>
+</head>
 
-		 <input type="button" class="btn btn-primary" onclick="window.location.href=window.location.origin;" value="Home" />
-  	</div>
+<body>
 
-	<form id="regInfo" method="post">
-		<legend> <h1>Registration Information</h1> </legend>
-		First Name
-		<input name="FName" id="firstName" required="required" type="text"/> <br/><br/>
-		Last Name
-		<input name="LName" id="lastName" required="required" type="text"/> <br/><br/>
-		E-mail address
-		<input name="e-Address" id="emailAddress" required="required" type="email"/> <br/><br/>
-		Password
-		<input name="pass" id="password" required="required" type="password"/> <br/><br/>
-		Confirm Password
-		<input name="cPass" id="confirmPassword" required="required" type="password" oninput="check(this)"/> <br/><br/>
-		<script language='javascript' type='text/javascript'>
+<div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <input type="button" class="btn btn-primary" style="border: 2px solid black; border-radius: 5px;"
+           onclick="window.location.href=window.location.origin;" value="Home"/>
+</div>
+
+<div class="flex-container" style="display: flex; align-items: center; justify-content: center;">
+    <form id="regInfo" method="post">
+        <legend><h1>Registration Information</h1></legend>
+        <div style="text-align: center;">First Name: <input name="FName" id="firstName" required="required"
+                                                            style="text-align: center;" type="text"/></div>
+        <br/>
+        <div style="text-align: center;">Last Name:
+            <input name="LName" id="lastName" required="required" style="text-align: center;" type="text"/></div>
+        <br/>
+        <div style="text-align: center;">E-mail address:
+            <input name="e-Address" id="emailAddress" required="required" type="email"/></div>
+        <br/>
+        <div style="text-align: center;">Password:
+            <input name="pass" id="password" required="required" type="password"/></div>
+        <br/>
+        <div style="text-align: center;">Confirm Password:
+            <input name="cPass" id="confirmPassword" required="required" type="password" oninput="check(this)"/></div>
+        <br/>
+        <script language='javascript' type='text/javascript'>
             function check(password) {
                 if (password.value != document.getElementById('password').value){
                     password.setCustomValidity('Passwords must match.');
@@ -32,23 +39,19 @@
                     password.setCustomValidity('');
                 }
             }
+
         </script>
-		<input name="submitButton" id="Submit"  value="Submit" type="submit" />
-		
-	
-	
-	</form>
+        <div style="text-align: center;"><input name="submitButton" id="Submit" value="Submit" type="submit"/></div>
+    </form>
+</div>
 
-	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
-	<script src="javascript/registration.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="javascript/registration.js"></script>
 
-  </body>
-  
-  
-  
-  
-  
-  </html>
+</body>
+
+
+</html>
