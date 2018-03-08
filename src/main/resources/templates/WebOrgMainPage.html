@@ -4,8 +4,8 @@
 
     <title>My Projects</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="css/WebOrgMainPage.css" rel="stylesheet"/>
-    <link href="css/main.css" rel="stylesheet"/>
+    <link href="css/WebOrgMainPage.css" th:href="@{/css/WebOrgMainPage.css}" rel="stylesheet"/>
+    <link href="css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -27,7 +27,6 @@
             <div class="row">
                 <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname} "></p>
                 <input type="button" onclick="window.location.href=window.location.origin;" value="Sign Out"/>
-                <!-- Add logout Functionality-->
             </div>
         </div>
 
@@ -53,7 +52,8 @@
 
     <a id="naviconBot" href="#">
         <div class="btn-group-vertical" data-toggle="buttons">
-            <button type="button" class="buttonBot1">New Project</button>
+            <button type="button" class="buttonBot1"
+                    onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
             <button type="button" class="buttonBot2"
                     onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
             <button type="button" class="buttonBot3">Invite User</button>
@@ -62,8 +62,8 @@
 
 </footer>
 
+<script type="text/javascript" src="javascript/projectSelector.js" th:src="@{/javascript/projectSelector.js}"></script>
 
 </body>
-
 
 </html>

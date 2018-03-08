@@ -3,6 +3,7 @@ package taskboard.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import taskboard.models.*;
 
@@ -13,6 +14,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
 
 @Controller
 public class MainController {
@@ -47,8 +50,19 @@ public class MainController {
         return "WebOrgTaskPage";
     }
 
+    @RequestMapping("/addProject")
+    public String addProject() {
+        return "WebOrgProjectPage";
+    }
+
     @RequestMapping("/home")
     public String home(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return projectHome(request, response, model, -1L);
+    }
+
+    @RequestMapping("/home/{projectId}")
+    public String projectHome(HttpServletRequest request, HttpServletResponse response, Model model,
+                              @PathVariable(name = "projectId") long projectId) {
         Optional<Cookie> userIdCookie = Arrays.stream(
                 request.getCookies() != null ? request.getCookies() : new Cookie[0])
                 .filter(cookie -> cookie.getName().equals("user_id")).findFirst();
@@ -71,6 +85,7 @@ public class MainController {
 
         projects = StreamSupport.stream(projects.spliterator(), false)
                 .filter( project -> user.getId() == project.getUser().getId() )
+                .sorted( (p1, p2) -> projectId == p1.getId() ? -1 : projectId == p2.getId() ? 1 : 0 )
                 .collect(Collectors.toList());
 
         Project defaultProject = StreamSupport.stream(projects.spliterator(), false).findFirst().get();

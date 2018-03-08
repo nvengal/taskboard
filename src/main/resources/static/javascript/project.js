@@ -1,21 +1,19 @@
 $( () => {
 
-  var $form = $('#new-task-form');
+  var $form = $('#new-project-form');
   var $name = $('#name');
   var $description = $('#description');
-  var $status = $('#statusBar');
 
   $form.on('submit', (event) => {
       event.preventDefault();
 
       var value = "; " + document.cookie;
-      var parts = value.split("; project_id=");
-      var project_id = parts.pop().split(";").shift();
+      var parts = value.split("; user_id=");
+      var user_id = parts.pop().split(";").shift();
 
-      var task = {
+      var project = {
         'name': $name.val(),
         'description': $description.val(),
-        'status': $status.val(),
       };
 
       $.ajax({
@@ -25,13 +23,13 @@ $( () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        url:'/api/tasks/' + project_id + '/add',
-        data: JSON.stringify(task),
+        url:'/api/projects/' + user_id + '/add',
+        data: JSON.stringify(project),
         success: (response) => {
-          window.location.href = window.location.origin + '/home/' + project_id;
+          window.location.href = window.location.origin + '/home/' + response.id;
         },
         error: (err) => {
-          alert('Failed to save new task');
+          alert('Failed to save new project');
           console.log('Error: ' + err.responseJSON.message);
         }
       });
