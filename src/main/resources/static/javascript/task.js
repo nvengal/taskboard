@@ -15,7 +15,7 @@ $( () => {
       var task = {
         'name': $name.val(),
         'description': $description.val(),
-        'status': $status.val(),
+        'status': $status.children(":selected").attr("name"),
       };
 
       $.ajax({

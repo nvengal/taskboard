@@ -20,7 +20,7 @@
     <textarea id="description"></textarea> <br/><br/>
     <label>Status</label>
     <select name="statusBar" id="statusBar">
-        <option th:each="status : ${taskStatusTypes}" th:text="${status.name()}"></option>
+        <option th:each="status : ${taskStatusTypes}" th:name="${status.name()}" th:text="${status}"></option>
     </select>
     <input name="submitButton" id="Submit" value="Submit" type="submit"/>
 </form>
