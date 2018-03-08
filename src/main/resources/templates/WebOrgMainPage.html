@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <title>My Projects</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scal=1, shrink-to-fit=no" />
     <link href="css/WebOrgMainPage.css" th:href="@{/css/WebOrgMainPage.css}" rel="stylesheet"/>
     <link href="css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style>
+       .modal {
+            display: none;
+            position: absolute;
+            top-padding: 100px;
+            height: 300px;
+            width: 400px;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+
+        #button1 {
+            background-color: black;
+            border: None;
+            color: white;
+            border-radius: 100%;
+            font-size: 30px;
+            height:50px;
+            width:50px;
+            text-align: center;
+            transition-duration: 0.4s;
+        }
+
+        #button1:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +60,7 @@
 
         <div class="topbar-right">
             <div class="row">
-                <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname} "></p>
+                <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname}"></p>
                 <input type="button" onclick="window.location.href=window.location.origin;" value="Sign Out"/>
             </div>
         </div>
@@ -50,6 +85,8 @@
 
 <footer class="footer">
 
+    <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#menu-modal" id = "button1">+</a>
+
     <a id="naviconBot" href="#">
         <div class="btn-group-vertical" data-toggle="buttons">
             <button type="button" class="buttonBot1"
@@ -63,6 +100,35 @@
 </footer>
 
 <script type="text/javascript" src="javascript/projectSelector.js" th:src="@{/javascript/projectSelector.js}"></script>
+
+
+<div id="menu-modal" class="modal fade">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" id="closeNew" data-dismiss="modal" data-backdrop="false" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <button type="button" class="buttonBot1"
+                    onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
+            <button type="button" class="buttonBot2"
+                    onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
+            <button type="button" class="buttonBot3">Invite User</button>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var modal = document.getElementById('menu-modal');
+
+    var btn = document.getElementById('button1');
+
+    btn.onclick = function() {
+        modal.style.display = 'block';
+    }
+</script>
 
 </body>
 
