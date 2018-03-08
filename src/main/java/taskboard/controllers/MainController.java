@@ -40,6 +40,13 @@ public class MainController {
         return "WebOrgRegPage";
     }
 
+    @RequestMapping("/addTask")
+    public String addTask(Model model) {
+        model.addAttribute("taskStatusTypes", Task.Status.values());
+
+        return "WebOrgTaskPage";
+    }
+
     @RequestMapping("/home")
     public String home(HttpServletRequest request, HttpServletResponse response, Model model) {
         Optional<Cookie> userIdCookie = Arrays.stream(
@@ -68,6 +75,8 @@ public class MainController {
 
         Project defaultProject = StreamSupport.stream(projects.spliterator(), false).findFirst().get();
 
+        createProjectCookie(response, defaultProject);
+
         model.addAttribute("projects", projects);
 
         model.addAttribute("taskStatusTypes", Task.Status.values());
@@ -81,6 +90,12 @@ public class MainController {
         model.addAttribute("tasks", tasks);
 
         return "WebOrgMainPage";
+    }
+
+    private void createProjectCookie(HttpServletResponse response, Project project) {
+        Cookie cookie = new Cookie("project_id", String.valueOf(project.getId()));
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 
 }
