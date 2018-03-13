@@ -105,19 +105,23 @@
 <div id="menu-modal" class="modal fade">
 
     <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" id="closeNew" data-dismiss="modal" data-backdrop="false" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-            <button type="button" class="buttonBot1"
-                    onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
-            <button type="button" class="buttonBot2"
-                    onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
-            <button type="button" class="buttonBot3">Invite User</button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
 
-        </div>
+                <div class="modal-body">
+                    <button type="button" class="buttonBot1"
+                        onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
+                    <button type="button" class="buttonBot2"
+                        onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
+                    <button type="button" class="buttonBot3">Invite User</button>
+
+                </div>
+            </div>
+         </div>
     </div>
-
 </div>
 
 <script>
