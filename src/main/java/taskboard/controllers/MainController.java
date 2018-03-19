@@ -50,6 +50,14 @@ public class MainController {
         return "WebOrgTaskPage";
     }
 
+    @RequestMapping("/editTask/{taskId}")
+    public String editTask(Model model, @PathVariable(name = "taskId") long taskId) {
+        Task task = taskRepository.findOne(taskId);
+        model.addAttribute("task", task);
+        model.addAttribute("taskStatusTypes", Task.Status.values());
+        return "WebOrgEditTaskPage";
+    }
+
     @RequestMapping("/addProject")
     public String addProject() {
         return "WebOrgProjectPage";

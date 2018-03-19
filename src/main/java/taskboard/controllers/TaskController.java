@@ -38,10 +38,9 @@ public class TaskController {
         } else {
             if (foundTask.getProject().getId() != projectId) {
                 Project project = entityManager.getReference(Project.class, projectId);
-                task.setProject(project);
+                foundTask.setProject(project);
             }
             foundTask.setName(task.getName());
-            foundTask.setProject(task.getProject());
             foundTask.setDescription(task.getDescription());
             foundTask.setStatus(task.getStatus());
             foundTask.setDueDate(task.getDueDate());
