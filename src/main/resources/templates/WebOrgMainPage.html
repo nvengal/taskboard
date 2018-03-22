@@ -24,6 +24,17 @@
             margin-top: -150px;
         }
 
+        #task-menu {
+            display: none;
+            position: absolute;
+            height: 500px;
+            width: 400px;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+
         #optionsToggle {
             background-color: black;
             border: None;
@@ -103,10 +114,43 @@
                     <button type="button" class="buttonBot1"
                         onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
                     <button type="button" class="buttonBot2"
-                        onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
+                        data-toggle="modal" data-target="#task-menu" data-dismiss="modal">New Task</button>
                     <button type="button" class="buttonBot3">Invite User</button>
 
                 </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="task-menu" tabindex="-1" role="dialog" aria-labelledby="taskMenu" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form id="new-task-form" method="post">
+            <div class="modal-body">
+                <label>Name</label><br/>
+                <input id="name" required="required" type="text"/> <br/><br/>
+                <label>Description</label><br/>
+                <textarea id="description"></textarea> <br/><br/>
+                <label>Status</label>
+                <select name="statusBar" id="statusBar">
+                    <option th:each="status : ${taskStatusTypes}" th:name="${status.name()}" th:text="${status}"></option>
+                </select><br/>
+
+            </div>
+
+            <div class="modal-footer">
+                <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
+                <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -116,6 +160,7 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="javascript/home/projectSelector.js" th:src="@{/javascript/home/projectSelector.js}"></script>
 <script type="text/javascript" src="javascript/home/main.js" th:src="@{/javascript/home/main.js}"></script>
+<script type="text/javascript" src="javascript/task/addTask.js"></script>
 
 </body>
 
