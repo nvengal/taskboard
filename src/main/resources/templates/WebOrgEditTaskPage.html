@@ -25,6 +25,11 @@
             <option th:each="status : ${taskStatusTypes}" th:name="${status.name()}" th:text="${status}"
                 th:selected="${status == task.getStatus()}"></option>
         </select><br/>
+        <label>Comment</label>
+        <div th:each="comment : ${comments}">
+            <textarea th:text="${comment.getText()}" readonly="true"></textarea><br/>
+        </div>
+        <textarea id="newComment"></textarea><br/>
         <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
     </form>
 </div>
