@@ -1,4 +1,4 @@
-package taskboard.models;
+package taskboard.models.user;
 
 import org.springframework.data.repository.CrudRepository;
 

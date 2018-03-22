@@ -1,12 +1,13 @@
-package taskboard.controllers;
+package taskboard.controllers.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import taskboard.models.Project;
-import taskboard.models.User;
-import taskboard.models.UserRepository;
+import taskboard.controllers.project.ProjectController;
+import taskboard.models.project.Project;
+import taskboard.models.user.User;
+import taskboard.models.user.UserRepository;
 import taskboard.pojos.ResponsePOJO;
 
 import javax.servlet.http.Cookie;

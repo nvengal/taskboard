@@ -1,7 +1,8 @@
-package taskboard.models;
+package taskboard.models.task;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
+import taskboard.models.project.Project;
 
 import javax.persistence.*;
 import java.util.Date;

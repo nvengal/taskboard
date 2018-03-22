@@ -5,7 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import taskboard.models.*;
+import taskboard.models.comment.Comment;
+import taskboard.models.comment.CommentRepository;
+import taskboard.models.project.Project;
+import taskboard.models.project.ProjectRepository;
+import taskboard.models.task.Task;
+import taskboard.models.task.TaskRepository;
+import taskboard.models.user.User;
+import taskboard.models.user.UserRepository;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

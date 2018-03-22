@@ -1,11 +1,11 @@
-package taskboard.controllers;
+package taskboard.controllers.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import taskboard.models.Comment;
-import taskboard.models.CommentRepository;
-import taskboard.models.Task;
+import taskboard.models.comment.Comment;
+import taskboard.models.comment.CommentRepository;
+import taskboard.models.task.Task;
 
 import javax.persistence.EntityManager;
 

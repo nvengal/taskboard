@@ -1,8 +1,9 @@
-package taskboard.models;
+package taskboard.models.comment;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import taskboard.models.task.Task;
 
 import java.util.List;
 
