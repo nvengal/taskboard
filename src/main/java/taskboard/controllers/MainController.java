@@ -100,7 +100,7 @@ public class MainController {
 
         model.addAttribute("user", user);
 
-        Iterable<Project> projects = projectRepository.findAll();
+        Iterable<Project> projects = projectRepository.findProjects(user);
 
         projects = StreamSupport.stream(projects.spliterator(), false)
                 .filter( project -> user.getId() == project.getUser().getId() )
