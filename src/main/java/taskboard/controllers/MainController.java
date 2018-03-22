@@ -104,11 +104,7 @@ public class MainController {
 
         model.addAttribute("taskStatusTypes", Task.Status.values());
 
-        Iterable<Task> tasks = taskRepository.findAll();
-
-        tasks = StreamSupport.stream(tasks.spliterator(), false)
-                .filter( task -> defaultProject.getId() == task.getProject().getId() )
-                .collect(Collectors.toList());
+        Iterable<Task> tasks = taskRepository.findTasks(defaultProject);
 
         model.addAttribute("tasks", tasks);
 

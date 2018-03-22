@@ -97,7 +97,7 @@ public class Task {
         NOT_STARTED("Not Started"),
         IN_PROGRESS("In Progress"),
         TESTING("Testing"),
-        FINALIZING("Finalizing");
+        COMPLETED("Completed");
 
         private String status;
 

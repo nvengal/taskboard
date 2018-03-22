@@ -87,16 +87,6 @@
 
     <button type="button" class="btn btn-primary" id="optionsToggle" data-toggle="modal" data-target="#menu-modal">+</button>
 
-    <a id="naviconBot" href="#">
-        <div class="btn-group-vertical" data-toggle="buttons">
-            <button type="button" class="buttonBot1"
-                    onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
-            <button type="button" class="buttonBot2"
-                    onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
-            <button type="button" class="buttonBot3">Invite User</button>
-        </div>
-    </a>
-
 </footer>
 
 <script type="text/javascript" src="javascript/projectSelector.js" th:src="@{/javascript/projectSelector.js}"></script>
@@ -133,6 +123,7 @@
         modal.style.display = 'block';
     }
 </script>
+
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
