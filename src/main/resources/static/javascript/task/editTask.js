@@ -5,9 +5,33 @@ $( () => {
   var $name = $('#name');
   var $description = $('#description');
   var $status = $('#statusBar');
+  var $comment = $('#newComment');
 
   $form.on('submit', (event) => {
       event.preventDefault();
+
+      if ($comment.val().trim().length > 0) {
+        var comment = {
+          'text': $comment.val().trim(),
+        };
+
+        $.ajax({
+          type: 'PUT',
+          datatype: 'json',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          url:'/api/comments/' + $taskId.val() + '/add',
+          data: JSON.stringify(comment),
+          success: () => {
+            console.log('Comment saved for task ' + $taskId.val());
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+      }
 
       var value = "; " + document.cookie;
       var parts = value.split("; project_id=");

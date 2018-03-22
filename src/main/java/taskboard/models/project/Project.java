@@ -1,6 +1,7 @@
-package taskboard.models;
+package taskboard.models.project;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import taskboard.models.user.User;
 
 import javax.persistence.*;
 import java.util.Date;

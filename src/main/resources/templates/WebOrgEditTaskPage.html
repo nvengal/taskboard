@@ -25,6 +25,11 @@
             <option th:each="status : ${taskStatusTypes}" th:name="${status.name()}" th:text="${status}"
                 th:selected="${status == task.getStatus()}"></option>
         </select><br/>
+        <label>Comment</label>
+        <div th:each="comment : ${comments}">
+            <textarea th:text="${comment.getText()}" readonly="true"></textarea><br/>
+        </div>
+        <textarea id="newComment"></textarea><br/>
         <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
     </form>
 </div>
@@ -33,7 +38,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
-<script type="text/javascript" src="javascript/editTask.js" th:src="@{/javascript/editTask.js}"></script>
+<script type="text/javascript" src="javascript/task/editTask.js" th:src="@{/javascript/task/editTask.js}"></script>
 
 </body>
 </html>

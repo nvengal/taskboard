@@ -1,11 +1,11 @@
-package taskboard.controllers;
+package taskboard.controllers.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import taskboard.models.Project;
-import taskboard.models.ProjectRepository;
-import taskboard.models.User;
+import taskboard.models.project.Project;
+import taskboard.models.project.ProjectRepository;
+import taskboard.models.user.User;
 import taskboard.pojos.ResponsePOJO;
 
 import javax.persistence.EntityManager;

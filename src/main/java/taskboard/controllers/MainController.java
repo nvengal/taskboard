@@ -5,17 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import taskboard.models.*;
+import taskboard.models.comment.Comment;
+import taskboard.models.comment.CommentRepository;
+import taskboard.models.project.Project;
+import taskboard.models.project.ProjectRepository;
+import taskboard.models.task.Task;
+import taskboard.models.task.TaskRepository;
+import taskboard.models.user.User;
+import taskboard.models.user.UserRepository;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
 
 @Controller
 public class MainController {
@@ -28,6 +34,9 @@ public class MainController {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @RequestMapping("/")
     public String index(HttpServletResponse response) {
@@ -53,8 +62,10 @@ public class MainController {
     @RequestMapping("/editTask/{taskId}")
     public String editTask(Model model, @PathVariable(name = "taskId") long taskId) {
         Task task = taskRepository.findOne(taskId);
+        List<Comment> comments = commentRepository.findCommentsForTask(task);
         model.addAttribute("task", task);
         model.addAttribute("taskStatusTypes", Task.Status.values());
+        model.addAttribute("comments", comments);
         return "WebOrgEditTaskPage";
     }
 
