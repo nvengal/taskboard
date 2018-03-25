@@ -1,8 +1,8 @@
 $( () => {
 
   var $form = $('#new-project-form');
-  var $name = $('#name');
-  var $description = $('#description');
+  var $name = $('#nameP');
+  var $description = $('#descriptionP');
 
   $form.on('submit', (event) => {
       event.preventDefault();
