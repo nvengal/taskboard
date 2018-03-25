@@ -4,3 +4,6 @@
 #Intellij
 /.idea
 *.iml
+src/main/resources/templates/WebOrgMainPageTest.css
+src/main/resources/templates/WebOrgMainPagetest.html
+src/main/resources/templates/WebOrgMainPageTest2.css

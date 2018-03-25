@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	 
 
     <style>
        .modal {
@@ -41,7 +43,64 @@
             background-color: white;
             color: black;
         }
+		
+		.droppable { width: 300px; height: 150px; float: left;  background-color:red; }
+		
+		.column {
+    width: calc(100% / 7);
+    float: left;
+    padding-bottom: 100px;
+	
+	
+  }
+		
     </style>
+	
+	
+	  <script>
+  $( function() {
+   
+    $( ".card" ).draggable({ revert: "invalid" });
+
+$(".droppable").droppable({
+	
+   
+		
+		drop: function(event, ui) {
+		
+			$(ui.draggable).detach().css({top: -30,left: 0}).appendTo(this);
+		},
+
+		 over: function(event, ui) {
+
+ 
+    $('.droppable').droppable('enable');
+
+
+		if($(this).has('.card').length) {
+			$(this).droppable('disable');
+		}
+	}
+		
+		
+	});
+
+});
+  </script>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </head>
 
 <body>
@@ -58,10 +117,6 @@
             </select>
         </div>
 
-        <div class="topbar-center">
-            <h1 th:text="${project.name}" data-toggle="tooltip" data-placement="bottom" th:title="${project.description}"></h1>
-        </div>
-
         <div class="topbar-right">
             <div class="row">
                 <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname}"></p>
@@ -73,10 +128,19 @@
 
 </header>
 
+
+
+
+
+
+
+
 <div th:each="status : ${taskStatusTypes}" th:id="'status_' + ${status}">
+
     <h1 th:text="${status.toString()}"></h1>
-    <div class="card-group">
-        <div class="card" th:each="task : ${tasks}" th:if="${task.status} == ${status}"
+    <div class="row">
+	<div class="droppable"  th:each="task : ${tasks}">
+        <div class="card"  th:if="${task.status} == ${status}"
              th:id="'task_' + ${task.id}" style="max-width: 20rem;">
             <div class="card-body">
                 <h4 class="card-title" th:text="${task.name}"></h4>
@@ -85,13 +149,46 @@
             <div class="card-footer"></div>
         </div>
     </div>
+	<div>
+	
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <footer class="footer">
 
     <button type="button" class="btn btn-primary" id="optionsToggle" data-toggle="modal" data-target="#menu-modal">+</button>
 
+    <a id="naviconBot" href="#">
+        <div class="btn-group-vertical" data-toggle="buttons">
+            <button type="button" class="buttonBot1"
+                    onclick="window.location.href=window.location.origin+'/addProject'">New Project</button>
+            <button type="button" class="buttonBot2"
+                    onclick="window.location.href=window.location.origin+'/addTask'">New Task</button>
+            <button type="button" class="buttonBot3">Invite User</button>
+        </div>
+    </a>
+
 </footer>
+
+<script type="text/javascript" src="javascript/projectSelector.js" th:src="@{/javascript/projectSelector.js}"></script>
+
 
 <div class="modal fade" id="menu-modal" tabindex="-1" role="dialog" aria-labelledby="optionsMenu" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -115,11 +212,19 @@
     </div>
 </div>
 
+<script>
+    var modal = document.getElementById('menu-modal');
+
+    var btn = document.getElementById('button1');
+
+    btn.onclick = function() {
+        modal.style.display = 'block';
+    }
+</script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="javascript/home/projectSelector.js" th:src="@{/javascript/home/projectSelector.js}"></script>
-<script type="text/javascript" src="javascript/home/main.js" th:src="@{/javascript/home/main.js}"></script>
+<script type="text/javascript" src="javascript/main.js" th:src="@{/javascript/main.js}"></script>
 
 </body>
 
