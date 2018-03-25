@@ -58,6 +58,10 @@
             </select>
         </div>
 
+        <div class="topbar-center">
+            <h1 th:text="${project.name}" data-toggle="tooltip" data-placement="bottom" th:title="${project.description}"></h1>
+        </div>
+
         <div class="topbar-right">
             <div class="row">
                 <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname}"></p>

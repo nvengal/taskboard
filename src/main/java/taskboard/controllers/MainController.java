@@ -111,6 +111,8 @@ public class MainController {
 
         createProjectCookie(response, defaultProject);
 
+        model.addAttribute("project", defaultProject);
+
         model.addAttribute("projects", projects);
 
         model.addAttribute("taskStatusTypes", Task.Status.values());
