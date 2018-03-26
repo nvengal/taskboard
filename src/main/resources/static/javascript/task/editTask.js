@@ -2,9 +2,9 @@ $( () => {
 
   var $form = $('#edit-task-form');
   var $taskId = $('#taskId');
-  var $name = $('#name');
-  var $description = $('#description');
-  var $status = $('#statusBar');
+  var $name = $('#nameT');
+  var $description = $('#descriptionT');
+  var $status = $('#statusBarT');
   var $comment = $('#newComment');
 
   $form.on('submit', (event) => {

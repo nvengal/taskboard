@@ -66,7 +66,7 @@ public class MainController {
         model.addAttribute("task", task);
         model.addAttribute("taskStatusTypes", Task.Status.values());
         model.addAttribute("comments", comments);
-        return "WebOrgEditTaskPage";
+        return "WebOrgMainPage :: taskContent";
     }
 
     @RequestMapping("/addProject")

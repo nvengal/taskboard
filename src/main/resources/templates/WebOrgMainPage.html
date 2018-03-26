@@ -30,6 +30,18 @@
             margin-top: -150px;
         }
 
+        #task-view {
+            display: none;
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            overflow-y: auto;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+
         #task-menu {
             display: none;
             position: absolute;
@@ -107,6 +119,18 @@ $(".droppable").droppable({
 
     </script>
 
+    <script th:inline="javascript">
+    function getTaskInfo(id) {
+	$.ajax({
+		url: "/editTask/" + id,
+		success: function(data) {
+			$("#taskViewHolder").html(data);
+			$("#task-view").modal("show");
+		}
+	});
+}
+</script>
+
 
 </head>
 
@@ -146,7 +170,7 @@ $(".droppable").droppable({
     <div class="row">
         <div class="droppable" th:each="task : ${tasks}" th:if="${task.status} == ${status}">
             <div class="card"
-                 th:id="'task_' + ${task.id}" style="max-width: 20rem;">
+                 th:id="'task_' + ${task.id}" th:onclick="'javascript:getTaskInfo(\'' + ${task.id} + '\');'" style="max-width: 20rem;">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${task.name}"></h4>
                     <p class="card-text" th:text="${task.description}"></p>
@@ -249,12 +273,55 @@ $(".droppable").droppable({
     </div>
 </div>
 
+<div id="taskViewHolder">
+
+</div>
+
+<div class="modal fade" id="task-view" tabindex="-1" role="dialog" aria-labelledby="taskView" aria-hidden="true" th:fragment="taskContent">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form id="edit-task-form" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="taskId" th:value="${task?.getId()}"/>
+                    <label>Name</label>
+                    <input id="nameT" required="required" type="text" th:value="${task?.getName()}"/> <br/><br/>
+                    <label>Description</label><br/>
+                    <textarea id="descriptionT" th:text="${task?.getDescription()}"></textarea> <br/><br/>
+                    <label>Status</label>
+                    <select name="statusBar" id="statusBarT">
+                        <option th:each="status : ${taskStatusTypes}" th:name="${status?.name()}" th:text="${status}"
+                                th:selected="${status == task?.getStatus()}"></option>
+                    </select><br/>
+                    <label>Comment</label>
+                    <div th:each="comment : ${comments}">
+                        <textarea th:text="${comment?.getText()}" readonly="true"></textarea><br/>
+                    </div>
+                    <textarea id="newComment"></textarea><br/>
+                </div>
+
+                <div class="modal-footer">
+                    <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
+                    <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript" src="javascript/home/projectSelector.js"
         th:src="@{/javascript/home/projectSelector.js}"></script>
-<script type="text/javascript" src="javascript/home/main.js" th:src="@{/javascript/home/main.js}"></script>
+<!-- <script type="text/javascript" src="javascript/home/main.js" th:src="@{/javascript/home/main.js}"></script> -->
 <script type="text/javascript" src="javascript/task/addTask.js" th:src="@{/javascript/task/addTask.js}"></script>
 <script type="text/javascript" src="javascript/project/project.js" th:src="@{/javascript/project/project.js}"></script>
+<script type="text/javascript" src="javascript/task/editTask.js" th:src="@{/javascript/task/editTask.js}"></script>
 
 </body>
 
