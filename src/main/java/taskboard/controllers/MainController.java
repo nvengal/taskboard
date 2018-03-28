@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import taskboard.models.comment.Comment;
 import taskboard.models.comment.CommentRepository;
 import taskboard.models.project.Project;
@@ -17,6 +18,7 @@ import taskboard.models.user.UserRepository;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -60,13 +62,25 @@ public class MainController {
     }
 
     @RequestMapping("/editTask/{taskId}")
-    public String editTask(Model model, @PathVariable(name = "taskId") long taskId) {
+    @ResponseBody
+    public Object[] editTask(Model model, @PathVariable(name = "taskId") long taskId) {
         Task task = taskRepository.findOne(taskId);
         List<Comment> comments = commentRepository.findCommentsForTask(task);
         model.addAttribute("task", task);
         model.addAttribute("taskStatusTypes", Task.Status.values());
         model.addAttribute("comments", comments);
-        return "WebOrgMainPage :: taskContent";
+
+        List<String> taskArr = new ArrayList<>();
+        taskArr.add(String.valueOf(task.getId()));
+        taskArr.add(task.getDescription());
+        taskArr.add(task.getName());
+        taskArr.add(task.getStatus().toString());
+
+        for (Comment c : comments) {
+            taskArr.add(c.getText());
+        }
+
+        return taskArr.toArray();
     }
 
     @RequestMapping("/addProject")

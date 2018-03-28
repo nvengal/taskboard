@@ -10,6 +10,8 @@ $( () => {
   $form.on('submit', (event) => {
       event.preventDefault();
 
+      console.log("in the edit task javascript")
+
       if ($comment.val().trim().length > 0) {
         var comment = {
           'text': $comment.val().trim(),

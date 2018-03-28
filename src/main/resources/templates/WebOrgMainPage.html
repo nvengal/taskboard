@@ -24,22 +24,21 @@
             position: absolute;
             height: 300px;
             width: 400px;
-            left: 50%;
             top: 50%;
+            left: 50%;
             margin-left: -150px;
             margin-top: -150px;
+
         }
 
         #task-view {
             display: none;
             position: absolute;
-            width: 400px;
-            height: 500px;
+            width: 500px;
+            height: 600px;
             overflow-y: auto;
-            left: 50%;
-            top: 50%;
-            margin-left: -150px;
-            margin-top: -150px;
+            top: 30%;
+            left: 30%;
         }
 
         #task-menu {
@@ -124,7 +123,13 @@ $(".droppable").droppable({
 	$.ajax({
 		url: "/editTask/" + id,
 		success: function(data) {
-			$("#taskViewHolder").html(data);
+		    $('#taskId').val(data[0]);
+		    $('#descriptionT').val(data[1]);
+		    $('#nameT').val(data[2]);
+		    $('#statusBarT').val(data[3]);
+		    $(data.slice(4)).each(function(i, e) {
+			    $("#comments").append("<textarea>" + e + "</textarea><br/>");
+			 });
 			$("#task-view").modal("show");
 		}
 	});
@@ -265,13 +270,14 @@ $(".droppable").droppable({
                 </div>
 
                 <div class="modal-footer">
-                    <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
+                    <input name="submitButton" id="SubmitP" style="text-align: center;" value="Submit" type="submit"/>
                     <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 <div id="taskViewHolder">
 
@@ -296,18 +302,18 @@ $(".droppable").droppable({
                     <textarea id="descriptionT" th:text="${task?.getDescription()}"></textarea> <br/><br/>
                     <label>Status</label>
                     <select name="statusBar" id="statusBarT">
-                        <option th:each="status : ${taskStatusTypes}" th:name="${status?.name()}" th:text="${status}"
+                        <option th:each="status : ${taskStatusTypes}" th:name="${status.name()}" th:text="${status}"
                                 th:selected="${status == task?.getStatus()}"></option>
                     </select><br/>
                     <label>Comment</label>
-                    <div th:each="comment : ${comments}">
-                        <textarea th:text="${comment?.getText()}" readonly="true"></textarea><br/>
+                    <div id="comments">
+
                     </div>
                     <textarea id="newComment"></textarea><br/>
                 </div>
 
                 <div class="modal-footer">
-                    <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
+                    <input name="submitButton" id="SubmitT" style="text-align: center;" value="Submit" type="submit"/>
                     <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
