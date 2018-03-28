@@ -151,6 +151,7 @@ $(".droppable").droppable({
                 <option th:each="project : ${projects}"
                         th:id="'project_' + ${project.id}" th:text="${project.name}"></option>
             </select>
+            <input type="button" id="deleteProjectButton" value="Delete Project"/>
         </div>
 
         <div class="topbar-center">
@@ -314,6 +315,7 @@ $(".droppable").droppable({
 
                 <div class="modal-footer">
                     <input name="submitButton" id="SubmitT" style="text-align: center;" value="Submit" type="submit"/>
+                    <input type="button" id="deleteTaskButton" value="Delete"/>
                     <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
@@ -325,9 +327,11 @@ $(".droppable").droppable({
 <script type="text/javascript" src="javascript/home/projectSelector.js"
         th:src="@{/javascript/home/projectSelector.js}"></script>
 <script type="text/javascript" src="javascript/home/main.js" th:src="@{/javascript/home/main.js}"></script>
+<script type="text/javascript" src="javascript/home/deleteProject.js" th:src="@{/javascript/home/deleteProject.js}"></script>
 <script type="text/javascript" src="javascript/task/addTask.js" th:src="@{/javascript/task/addTask.js}"></script>
 <script type="text/javascript" src="javascript/project/project.js" th:src="@{/javascript/project/project.js}"></script>
 <script type="text/javascript" src="javascript/task/editTask.js" th:src="@{/javascript/task/editTask.js}"></script>
+<script type="text/javascript" src="javascript/task/deleteTask.js" th:src="@{/javascript/task/deleteTask.js}"></script>
 
 </body>
 

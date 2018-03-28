@@ -3,8 +3,10 @@ package taskboard.controllers.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import taskboard.controllers.task.TaskController;
 import taskboard.models.project.Project;
 import taskboard.models.project.ProjectRepository;
+import taskboard.models.task.TaskRepository;
 import taskboard.models.user.User;
 import taskboard.pojos.ResponsePOJO;
 
@@ -17,6 +19,12 @@ public class ProjectController {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    private TaskController taskController;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     @Autowired
     private EntityManager entityManager;
@@ -49,6 +57,17 @@ public class ProjectController {
             Project savedProject = projectRepository.save(foundProject);
             return new ResponsePOJO<>(true, "Successfully updated project: " + project.getName(), savedProject);
         }
+    }
+
+    @DeleteMapping(path = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponsePOJO deleteProject(@PathVariable(name = "id") long id) {
+        Project project = projectRepository.findOne(id);
+        if (project == null) {
+            return new ResponsePOJO(false, "There is no project with id=" + id);
+        }
+        taskRepository.findTasks(project).stream().forEach(task -> taskController.deleteTask(task.getId()));
+        projectRepository.delete(project);
+        return new ResponsePOJO(true, "Deleted project #" + id);
     }
 
 }

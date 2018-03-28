@@ -3,6 +3,8 @@ package taskboard.controllers.task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import taskboard.models.comment.Comment;
+import taskboard.models.comment.CommentRepository;
 import taskboard.models.project.Project;
 import taskboard.models.task.Task;
 import taskboard.models.task.TaskRepository;
@@ -10,6 +12,7 @@ import taskboard.pojos.ResponsePOJO;
 
 import javax.persistence.EntityManager;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/tasks")
@@ -17,6 +20,9 @@ public class TaskController {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
     private EntityManager entityManager;
@@ -53,6 +59,18 @@ public class TaskController {
     public Task getTask(@PathVariable(name = "id") long id) {
         Task task = taskRepository.findOne(id);
         return task;
+    }
+
+    @DeleteMapping(path = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponsePOJO deleteTask(@PathVariable(name = "id") long id) {
+        Task task = taskRepository.findOne(id);
+        if (task == null) {
+            return new ResponsePOJO(false, "There is no task with id=" + id);
+        }
+        List<Comment> comments = commentRepository.findCommentsForTask(task);
+        commentRepository.delete(comments);
+        taskRepository.delete(task);
+        return new ResponsePOJO(true, "Deleted task #" + id);
     }
 
 }
