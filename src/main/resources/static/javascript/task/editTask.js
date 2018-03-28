@@ -1,72 +1,91 @@
 $( () => {
 
-  var $form = $('#edit-task-form');
-  var $taskId = $('#taskId');
-  var $name = $('#nameT');
-  var $description = $('#descriptionT');
-  var $status = $('#statusBarT');
-  var $comment = $('#newComment');
+  function getTaskInfo(id) {
+  	$.ajax({
+  		url: "/editTask/" + id,
+  		success: (data) => {
+  			$("#taskViewHolder").html(data);
+  			$("#task-view").modal("show");
 
-  $form.on('submit', (event) => {
-      event.preventDefault();
+  			var $form = $('#edit-task-form');
+            var $taskId = $('#taskId');
+            var $name = $('#nameT');
+            var $description = $('#descriptionT');
+            var $status = $('#statusBarT');
+            var $comment = $('#newComment');
 
-      if ($comment.val().trim().length > 0) {
-        var comment = {
-          'text': $comment.val().trim(),
-        };
+            $form.on('submit', (event) => {
+                event.preventDefault();
 
-        $.ajax({
-          type: 'PUT',
-          datatype: 'json',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          url:'/api/comments/' + $taskId.val() + '/add',
-          data: JSON.stringify(comment),
-          success: () => {
-            console.log('Comment saved for task ' + $taskId.val());
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-      }
+                if ($comment.val().trim().length > 0) {
+                  var comment = {
+                    'text': $comment.val().trim(),
+                  };
 
-      var value = "; " + document.cookie;
-      var parts = value.split("; project_id=");
-      var project_id = parts.pop().split(";").shift();
+                  $.ajax({
+                    type: 'PUT',
+                    datatype: 'json',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    },
+                    url:'/api/comments/' + $taskId.val() + '/add',
+                    data: JSON.stringify(comment),
+                    success: () => {
+                      console.log('Comment saved for task ' + $taskId.val());
+                    },
+                    error: (err) => {
+                      console.log(err);
+                    }
+                  });
+                }
 
-      var task = {
-        'id': $taskId.val(),
-        'name': $name.val(),
-        'description': $description.val(),
-        'status': $status.children(":selected").attr("name"),
-      };
+                var value = "; " + document.cookie;
+                var parts = value.split("; project_id=");
+                var project_id = parts.pop().split(";").shift();
 
-      $.ajax({
-        type: 'POST',
-        datatype: 'json',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        url:'/api/tasks/' + project_id + '/update',
-        data: JSON.stringify(task),
-        success: (response) => {
-          if (response.success) {
-            window.location.href = window.location.origin + '/home/' + project_id;
-          } else {
-            alert('Failed to save new task');
-            console.log('Error: ' + response.message);
-          }
-        },
-        error: (err) => {
-          alert('Failed to save new task');
-          console.log('Error: ' + err.responseJSON.message);
-        }
-      });
+                var task = {
+                  'id': $taskId.val(),
+                  'name': $name.val(),
+                  'description': $description.val(),
+                  'status': $status.children(":selected").attr("name"),
+                };
 
+                $.ajax({
+                  type: 'POST',
+                  datatype: 'json',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  url:'/api/tasks/' + project_id + '/update',
+                  data: JSON.stringify(task),
+                  success: (response) => {
+                    if (response.success) {
+                      window.location.href = window.location.origin + '/home/' + project_id;
+                    } else {
+                      alert('Failed to save new task');
+                      console.log('Error: ' + response.message);
+                    }
+                  },
+                  error: (err) => {
+                    alert('Failed to save new task');
+                    console.log('Error: ' + err.responseJSON.message);
+                  }
+                });
+
+            });
+  		}
+  	});
+  }
+
+  $('.card').on('click', (event) => {
+
+      var taskId = $(event.target.closest('.card')).attr('id').split("task_").pop();
+
+      console.log(taskId)
+      getTaskInfo(taskId)
   });
+
 
 });
