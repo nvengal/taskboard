@@ -46,6 +46,41 @@ $( () => {
 
   });
 
+  
+   $( ".card" ).draggable({ revert: "invalid" });
+
+$(".droppable").droppable({
+	
+   
+		
+		drop: function(event, ui) {
+		
+			$(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
+		},
+
+		 over: function(event, ui) {
+
+ 
+    $('.droppable').droppable('enable');
+
+
+		if($(this).has('.card').length) {
+			$(this).droppable('disable');
+		}
+		else{
+		
+		var task ={
+		'id':$(ui.draggable).attr('id').split("task_").pop(),
+		'status': $($(this).closest('div[name]')).attr('name')
+		};
+		
+		updateTask(task);
+		}
+	}
+		
+		
+	});
+  
   function updateTask(task) {
     var value = "; " + document.cookie;
     var parts = value.split("; project_id=");
