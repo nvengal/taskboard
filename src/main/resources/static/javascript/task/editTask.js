@@ -61,24 +61,23 @@ $(".droppable").droppable({
 		 over: function(event, ui) {
 
  
-    $('.droppable').droppable('enable');
+    $('.droppable').droppable('enable'){
 
-
-		if($(this).has('.card').length) {
-			$(this).droppable('disable');
-		}
-		else{
-		
-		var task ={
-		'id':$(ui.draggable).attr('id').split("task_").pop(),
-		'status': $($(this).closest('div[name]')).attr('name')
-		};
-		
-		updateTask(task);
-		}
-	}
-		
-		
+		drop: function(event, ui){ /* Adding this to see if it fixes 1.5 second drop time*/ 
+			
+			if($(this).has('.card').length) {
+				$(this).droppable('disable');
+			}
+			else{
+			
+			var task ={
+			'id':$(ui.draggable).attr('id').split("task_").pop(),
+			'status': $($(this).closest('div[name]')).attr('name')
+			};
+			
+			updateTask(task);
+			}
+		}	
 	});
   
   function updateTask(task) {
