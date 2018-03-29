@@ -35,10 +35,6 @@ $( () => {
         });
       }
 
-      var value = "; " + document.cookie;
-      var parts = value.split("; project_id=");
-      var project_id = parts.pop().split(";").shift();
-
       var task = {
         'id': $taskId.val(),
         'name': $name.val(),
@@ -46,29 +42,37 @@ $( () => {
         'status': $status.children(":selected").attr("name"),
       };
 
-      $.ajax({
-        type: 'POST',
-        datatype: 'json',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        url:'/api/tasks/' + project_id + '/update',
-        data: JSON.stringify(task),
-        success: (response) => {
-          if (response.success) {
-            window.location.href = window.location.origin + '/home/' + project_id;
-          } else {
-            alert('Failed to save new task');
-            console.log('Error: ' + response.message);
-          }
-        },
-        error: (err) => {
-          alert('Failed to save new task');
-          console.log('Error: ' + err.responseJSON.message);
-        }
-      });
+      updateTask(task);
 
   });
+
+  function updateTask(task) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; project_id=");
+    var project_id = parts.pop().split(";").shift();
+
+    $.ajax({
+            type: 'POST',
+            datatype: 'json',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            url:'/api/tasks/' + project_id + '/update',
+            data: JSON.stringify(task),
+            success: (response) => {
+              if (response.success) {
+                window.location.href = window.location.origin + '/home/' + project_id;
+              } else {
+                alert('Failed to save new task');
+                console.log('Error: ' + response.message);
+              }
+            },
+            error: (err) => {
+              alert('Failed to save new task');
+              console.log('Error: ' + err.responseJSON.message);
+            }
+          });
+  }
 
 });
