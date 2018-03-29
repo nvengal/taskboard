@@ -63,7 +63,11 @@ public class ProjectController {
     public ResponsePOJO deleteProject(@PathVariable(name = "id") long id) {
         Project project = projectRepository.findOne(id);
         if (project == null) {
-            return new ResponsePOJO(false, "There is no project with id=" + id);
+            return new ResponsePOJO(false, "Unable to delete project. " +
+                    "There is no project with id=" + id);
+        } else if (projectRepository.findProjects(project.getUser()).size() <= 1) {
+            return new ResponsePOJO(false, "Sorry, you can't delete your last project.\n" +
+                    "Every account must have at least one project.");
         }
         taskRepository.findTasks(project).stream().forEach(task -> taskController.deleteTask(task.getId()));
         projectRepository.delete(project);

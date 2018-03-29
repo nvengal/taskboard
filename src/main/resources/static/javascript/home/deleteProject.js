@@ -13,8 +13,12 @@ $( () => {
               },
               url:'/api/projects/delete/' + id,
               success: (response) => {
-                console.log(response.message);
-                window.location.href = window.location.origin + '/home';
+                if (response.success) {
+                    console.log(response.message);
+                    window.location.href = window.location.origin + '/home';
+                } else {
+                    alert(response.message);
+                }
               },
               error: () => {
                 alert('Error deleting project');
