@@ -46,10 +46,18 @@ public class TaskController {
                 Project project = entityManager.getReference(Project.class, projectId);
                 foundTask.setProject(project);
             }
-            foundTask.setName(task.getName());
-            foundTask.setDescription(task.getDescription());
-            foundTask.setStatus(task.getStatus());
-            foundTask.setDueDate(task.getDueDate());
+            if (task.getName() != null) {
+                foundTask.setName(task.getName());
+            }
+            if (task.getDescription() != null) {
+                foundTask.setDescription(task.getDescription());
+            }
+            if (task.getStatus() != null) {
+                foundTask.setStatus(task.getStatus());
+            }
+            if (task.getDueDate() != null) {
+                foundTask.setDueDate(task.getDueDate());
+            }
             Task savedTask = taskRepository.save(foundTask);
             return new ResponsePOJO<>(true, "Successfully updated task: " + task.getName(), savedTask);
         }
