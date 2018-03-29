@@ -109,47 +109,47 @@
 
 <body>
 
-<header class="header">
+<div class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <header class="header">
 
-    <form id="topBar">
+        <form id="topBar">
 
-        <div class="topbar-left">
-            <select name="projectsBar" id="projectBar">
-                <!-- Make choosing a different project refresh the tasks page. Maybe have a confirmation box.-->
-                <option th:each="project : ${projects}"
-                        th:id="'project_' + ${project.id}" th:text="${project.name}"></option>
-            </select>
-            <input type="button" id="deleteProjectButton" value="Delete Project"/>
-        </div>
-
-        <div class="topbar-center">
-            <h1 th:text="${project.name}" data-toggle="tooltip" data-placement="bottom"
-                th:title="${project.description}"></h1>
-        </div>
-
-        <div class="topbar-right">
-            <div class="row">
-                <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname}"></p>
-                <input type="button" onclick="window.location.href=window.location.origin;" value="Sign Out"/>
+            <div class="topbar-left">
+                <select name="projectsBar" id="projectBar">
+                    <!-- Make choosing a different project refresh the tasks page. Maybe have a confirmation box.-->
+                    <option th:each="project : ${projects}"
+                            th:id="'project_' + ${project.id}" th:text="${project.name}"></option>
+                </select>
+                <input type="button" id="deleteProjectButton" value="Delete Project" class="btn btn-secondary"/>
             </div>
-        </div>
 
-    </form>
+            <div class="topbar-center" style="position: absolute; left: 40%;">
+                <h1 th:text="${project.name}" data-toggle="tooltip" data-placement="bottom"
+                    th:title="${project.description}"></h1>
+            </div>
 
-</header>
+            <div class="topbar-right" style="position: absolute; top: 15px; right: 16px;">
+                <div class="row">
+                    <p class="lead" style="margin-right:1rem;" th:text="'Welcome, ' + ${user.firstname}"></p>
+                    <input type="button" onclick="window.location.href=window.location.origin;" value="Sign Out" class="btn btn-danger"/>
+                </div>
+            </div>
 
+        </form>
+
+    </header>
+</div>
 
 <div th:each="status : ${taskStatusTypes}" th:id="'status_' + ${status}" th:name="${status.name()}">
     <h1 th:text="${status.toString()}"></h1>
     <div class="row">
         <div class="droppable" th:each="task : ${tasks}" th:if="${task.status} == ${status}">
-            <div class="card"
-                 th:id="'task_' + ${task.id}" style="max-width: 20rem;">
+            <div class="card text-white bg-primary mb-3"
+                 th:id="'task_' + ${task.id}" style="max-width: 20rem; border: 0px;">
+                <div class="card-header" style="border: 25px;"><h4 class="card-title" th:text="${task.name}"></h4></div>
                 <div class="card-body">
-                    <h4 class="card-title" th:text="${task.name}"></h4>
                     <p class="card-text" th:text="${task.description}"></p>
                 </div>
-                <div class="card-footer"></div>
             </div>
         </div>
         <div class="droppable"></div>
@@ -164,7 +164,7 @@
 
 </footer>
 
-<div class="modal fade" id="menu-modal" tabindex="-1" role="dialog" aria-labelledby="optionsMenu" aria-hidden="true">
+<div class="modal fade" id="menu-modal" tabindex="-1" role="dialog" aria-labelledby="optionsMenu" aria-hidden="true" style="text-align: center;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -175,13 +175,11 @@
             </div>
 
             <div class="modal-body">
-                <button type="button" class="buttonBot1"
+                <button type="button" class="btn btn-primary"
                         data-toggle="modal" data-target="#project-menu">New Project
                 </button>
-                <button type="button" class="buttonBot2"
-                        data-toggle="modal" data-target="#task-menu">New Task
-                </button>
-                <button type="button" class="buttonBot3">Invite User</button>
+                <button type="button" class="btn btn-primary"
+                        data-toggle="modal" data-target="#task-menu">New Task</button>
 
             </div>
         </div>
@@ -212,8 +210,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit"/>
-                    <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
+                    <input name="submitButton" id="Submit" style="text-align: center;" value="Submit" type="submit" class="btn btn-primary"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
@@ -239,8 +237,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input name="submitButton" id="SubmitP" style="text-align: center;" value="Submit" type="submit"/>
-                    <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
+                    <input name="submitButton" id="SubmitP" style="text-align: center;" value="Submit" type="submit" class="btn btn-primary" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
@@ -282,9 +280,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input name="submitButton" id="SubmitT" style="text-align: center;" value="Submit" type="submit"/>
-                    <input type="button" id="deleteTaskButton" value="Delete"/>
-                    <button type="button" class="buttonClose" data-dismiss="modal">Cancel</button>
+                    <input name="submitButton" id="SubmitT" style="text-align: center;" value="Submit" type="submit" class="btn btn-primary"/>
+                    <input type="button" id="deleteTaskButton" value="Delete" class="btn btn-danger"/>
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
                 </div>
             </form>
         </div>
