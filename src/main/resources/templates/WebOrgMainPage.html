@@ -30,6 +30,9 @@
             margin-top: -150px;
 
         }
+        hr {
+            border: 1px solid white;
+        }
 
         #task-view {
             display: none;
@@ -96,7 +99,7 @@
 		    $('#nameT').val(data[2]);
 		    $('#statusBarT').val(data[3]);
 		    $(data.slice(4)).each(function(i, e) {
-			    $("#comments").append("<textarea>" + e + "</textarea><br/>");
+			    $("#comments").append("<p>" + e + "</p><hr /><br/>");
 			 });
 			$("#task-view").modal("show");
 		}
